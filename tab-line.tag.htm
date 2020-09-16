@@ -21,9 +21,9 @@
 			try {
 				let data = this.classList.contains('definition') ? tabLine.parseDefinition(this.textContent) : tabLine.parse(this.textContent);
 				console.log('data', data);
-				this.$q1('main').innerHTML = tabLine.toHTML(data);
-				console.log('html', tabLine.toHTML(data))
-				console.log('json',tabLine.toJSON(data))
+				this.$q1('main').innerHTML = '<table>'+tabLine.toHTML(data)+'</table>';
+				// console.log('html', tabLine.toHTML(data))
+				// console.log('json',tabLine.toJSON(data))
 				console.log('json',tabLine.toTypeScript(data))
 				// window.tal = tabLine.parse(this.textContent);
 				// window.tas = tabLine.stringify(window.tal);
@@ -46,13 +46,18 @@
 		white-space: pre;
 		color: white;
 
-		/* font-family:  "Lucida Console", Monaco, monospace; */
+		font-family:  var(--font,"Lucida Console", Monaco, monospace);
+		font-weight: 100;
 		/* padding: .3rem; */
 	}
-
+	line{display: block;}
+	[level='0']{border-top:1px solid red; }
+	[level='1']{padding-left: 2rem; }
+	[level='2']{padding-left: 4rem; }
+	[level='3']{padding-left: 6rem; }
 	* {
-		font-family: Inconsolata;
-		font-weight: 300;
+		/* font-family: Inconsolata; */
+		font-weight: 100;
 		font-size: 1.1rem;
 	}
 
@@ -77,7 +82,7 @@
 		/* font-weight: bold; */
 	}
 
-	value {
+	.value {
 		color: #ffa;
 	}
 

@@ -30,7 +30,7 @@ export function parse(text) {
 
 export function parseDefinition(item) {
 	if (typeof item == 'string') item = parse(item)
-	console.log('item', item.$key)
+	// console.log('item', item.$key)
 	// let item = object;
 	// for (let key in object) {
 	// let item = object[key];
@@ -61,15 +61,43 @@ export function stringify(item) {
 
 import typeOf from '../type.js';
 
+function maxSiblingWidth(item,key){
+	if(!item.$parent) return 0;
+	return Math.max(...item.$parent.$children.map(x=>x[key]?.length));
+}
+function padding(item,key){
+	let maxWidth = maxSiblingWidth(item,key);
+	let width = Math.ceil(maxWidth / 4)*4;
+	return item[key]?.padEnd(width,' ') ?? '';
+}
 export function toHTML(item) {
+	let string = '';
+	if (item.$level >= 0) {
+		// console.log('max-width',padding(item,'$key'))
+		string += `<tr ><td class='key' level="${item.$level}">${item.$key}</td>`;
+		// if (item.$cardinality)
+		// 	string += wrap(padding(item,'$cardinality'), 'cardinality') + '\t' + wrap(padding(item,'$type'), 'type', item.$type) + '\t' + wrap(item.$constraint, 'constraint') ;//+ '\n';
+		// else
+			string += item.$values.map(x => `<td class='value'>${x}</td>`).join('') + '\n';
+		+ '</tr>\n'
+	}
+	for (let child of item.$children ?? [])
+		string += toHTML(child);
+	return string;
+
+}
+
+export function toHTML2(item) {
 	let wrap = (string, tag, clazz = '') => `<${tag} class='${clazz ?? ''}'>${string ?? ''}</${tag}>`;
 	let string = '';
 	if (item.$level >= 0) {
-		string += Array(item.$level + 1).fill('').join('\t') + wrap(item.$key, 'key') + '\t'
+		console.log('max-width',padding(item,'$key'))
+		string += `<line level="${item.$level}">` + Array(item.$level + 1).fill('').join('\t') + wrap(padding(item,'$key'), 'key')  + '\t';
 		if (item.$cardinality)
-			string += wrap(item.$cardinality, 'cardinality') + '\t' + wrap(item.$type, 'type', item.$type) + '\t' + wrap(item.$constraint, 'constraint') + '\t' + '\n';
+			string += wrap(padding(item,'$cardinality'), 'cardinality') + '\t' + wrap(padding(item,'$type'), 'type', item.$type) + '\t' + wrap(item.$constraint, 'constraint') ;//+ '\n';
 		else
 			string += item.$values.map(x => wrap(x, 'value')).join('\t') + '\n';
+		+ '</line>'
 	}
 	for (let child of item.$children ?? [])
 		string += toHTML(child);
@@ -104,7 +132,7 @@ function path(item) {
 	while (item.$level > 0) {
 		item = item.$parent
 		p.unshift(item.$key)
-		console.log(item.$level, item.$key)
+		// console.log(item.$level, item.$key)
 	}
 	return p
 }
