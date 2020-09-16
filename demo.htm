@@ -1,0 +1,56 @@
+<script type="module" src='dist/json-view.tag.js'></script>
+
+<!-- <json-view>
+	{"number":123, "string":"abc","date":"2020-01-01", "URL":"https://www.google.com/search", "bool1":true, "bool2":false,  "dict":{"a":11,"b":"BB"}, "list":["one","two",333],"x":null}
+</json-view> -->
+
+<br/>
+<br/>
+<br/>
+
+<script type="module" src='dist/tab-line.tag.js'></script>
+
+<tab-line>
+patient 	12345
+	diagnosis	O12.4	37.5	A33.1
+	diagnosis	F07.3
+	labReport	453453
+		validated	2020-07-01T12:23:34
+		sample    	no_1
+			analysis	§gluc:ven
+				result	93 mg/dl
+				range	80 - 120
+			analysis	§chol:ven
+				value	10 
+				unit	g/l
+	diagnosis	X07.3
+	location	neuro.s2.r5
+		from	2020-01-02T12:23:34
+		till	2020-01-05T17:23:34
+		clinic	neuro
+		ward	s2
+		room	r5
+</tab-line>
+
+<tab-line class='definition'>
+patient 	*  	numericID
+	diagnosis	*	
+		ICD 	1	string	\p\d\d\.\d
+		issuer	?  	email
+	labReport	*  	int 	random unique
+		validated	?	DateTime
+		sample	*	number	1 - 100
+			analysis	*	terminology
+				result	1	unit
+				norm	?	range
+				value	1	int
+				unit	1	enum	g/l mol/l mg/dl
+	location	*	Location
+Location	*	int
+	from	1 	DateTime
+	till	? 	DateTime
+	clinic	1	string
+	ward	?	string
+	room	?	string
+</tab-line  class='definition'>
+

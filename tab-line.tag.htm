@@ -1,0 +1,132 @@
+<htm>
+	<main></main>
+</htm>
+
+<script>
+
+
+	import tabLine from '../tabLine.js';
+
+
+
+	class {
+		$onReady() {
+			this.show()
+		}
+		$onModelChange() {
+			this.show()
+		}
+		show() {
+			console.log('model change', this.textContent)
+			try {
+				let data = this.classList.contains('definition') ? tabLine.parseDefinition(this.textContent) : tabLine.parse(this.textContent);
+				console.log('data', data);
+				this.$q1('main').innerHTML = tabLine.toHTML(data);
+				console.log('html', tabLine.toHTML(data))
+				console.log('json',tabLine.toJSON(data))
+				console.log('json',tabLine.toTypeScript(data))
+				// window.tal = tabLine.parse(this.textContent);
+				// window.tas = tabLine.stringify(window.tal);
+				// console.log(tal, tas);
+			} catch (e) { console.log('error', e) }
+		}
+
+	}
+</script>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+	:host {
+		display: inline-block;
+		background: #333;
+		tab-size: 4;
+		-moz-tab-size: 4;
+		font-size: 14px;
+		white-space: pre;
+		color: white;
+
+		/* font-family:  "Lucida Console", Monaco, monospace; */
+		/* padding: .3rem; */
+	}
+
+	* {
+		font-family: Inconsolata;
+		font-weight: 300;
+		font-size: 1.1rem;
+	}
+
+	/* iframe {
+		width: 100%;
+		height: 100%;
+		border: none;
+	} */
+
+
+	/* body {
+		tab-size: 4;
+		-moz-tab-size: 4;
+		font-size: 14px;
+		white-space: pre;
+		color: white;
+		font-family: monospace;
+	} */
+
+	key {
+		color: #ddd;
+		/* font-weight: bold; */
+	}
+
+	value {
+		color: #ffa;
+	}
+
+	cardinality {
+		color: #faa;
+	}
+	type{
+		color: #aaf;
+	}
+	constraint{
+		color: #afa
+	}
+	index {
+		color: gray;
+		font-weight: bold;
+	}
+
+
+
+	.string {
+		color: gold;
+	}
+
+	.date,.time,.datetime {
+		color: magenta;
+	}
+
+	.url {
+		color: pink;
+	}
+
+	.null,
+	.undefined {
+		color: silver;
+	}
+
+	.boolean.false {
+		color: #f44;
+	}
+
+	.boolean.true {
+		color: #4f4;
+	}
+
+	.number {
+		color: aqua;
+	}
+
+	.term {
+		color: pink
+	}
+</style>
