@@ -59,7 +59,7 @@ export function stringify(item) {
 	return string;
 }
 
-import typeOf from '../type.js';
+import typeOf from './type.js';
 
 function maxSiblingWidth(item,key){
 	if(!item.$parent) return 0;

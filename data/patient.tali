@@ -1,0 +1,19 @@
+patient 	12345
+	diagnosis	O12.4	37.5	A33.1
+	diagnosis	F07.3
+	labReport	453453
+		validated	2020-07-01T12:23:34
+		sample    	no_1
+			analysis	§gluc:ven
+				result	93 mg/dl
+				range	80 - 120
+			analysis	§chol:ven
+				value	10 
+				unit	g/l
+	diagnosis	X07.3
+	location	neuro.s2.r5
+		from	2020-01-02T12:23:34
+		till	2020-01-05T17:23:34
+		clinic	neuro
+		ward	s2
+		room	r5

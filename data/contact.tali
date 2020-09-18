@@ -1,0 +1,16 @@
+person	12345
+	name
+		first	John
+		last	Doe
+		nick	Johnny
+	birth	1950-07-01
+	email	john.doe@gmail.com
+	email	johnny@personal.com
+	homepage	http://www.github.com
+	phone	123456789
+	address
+		city	Chicago
+		zip 	12345
+		street	Newstreet
+		house	21
+	lastPurchase	67.12

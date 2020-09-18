@@ -1,0 +1,19 @@
+patient 	*  	numericID
+	diagnosis	*	
+		ICD 	1	string	\p\d\d\.\d
+		issuer	?  	email
+	labReport	*  	int 	random unique
+		validated	?	DateTime
+		sample	*	number	1 - 100
+			analysis	*	terminology
+				result	1	unit
+				norm	?	range
+				value	1	int
+				unit	1	enum	g/l mol/l mg/dl
+	location	*	Location
+Location	*	int
+	from	1 	DateTime
+	till	? 	DateTime
+	clinic	1	string
+	ward	?	string
+	room	?	string

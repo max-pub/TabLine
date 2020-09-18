@@ -5,7 +5,8 @@
 <script>
 
 
-	import tabLine from '../tabLine.js';
+	import tabLine from '../../js/base.js';
+	import tali2html from '../../js/html.js';
 
 
 
@@ -21,10 +22,10 @@
 			try {
 				let data = this.classList.contains('definition') ? tabLine.parseDefinition(this.textContent) : tabLine.parse(this.textContent);
 				console.log('data', data);
-				this.$q1('main').innerHTML = '<table>'+tabLine.toHTML(data)+'</table>';
+				this.$q1('main').innerHTML = '<table>' + tali2html(data) + '</table>';
 				// console.log('html', tabLine.toHTML(data))
 				// console.log('json',tabLine.toJSON(data))
-				console.log('json',tabLine.toTypeScript(data))
+				// console.log('json', tabLine.toTypeScript(data))
 				// window.tal = tabLine.parse(this.textContent);
 				// window.tas = tabLine.stringify(window.tal);
 				// console.log(tal, tas);
@@ -35,7 +36,9 @@
 </script>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+	/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap'); */
+	/* @import url('https://max.pub/css/quicksand.css');
+	@import url('https://max.pub/css/inconsolata.css'); */
 
 	:host {
 		display: inline-block;
@@ -46,19 +49,43 @@
 		white-space: pre;
 		color: white;
 
-		font-family:  var(--font,"Lucida Console", Monaco, monospace);
+		font-family: var(--font, "Lucida Console", Monaco, monospace);
 		font-weight: 100;
 		/* padding: .3rem; */
 	}
-	line{display: block;}
-	[level='0']{border-top:1px solid red; }
-	[level='1']{padding-left: 2rem; }
-	[level='2']{padding-left: 4rem; }
-	[level='3']{padding-left: 6rem; }
+
+	line {
+		display: block;
+	}
+
+	[level='0'] {
+		/* border-top: 1px solid red; */
+	}
+
+	[level='1'] {
+		padding-left: 2rem;
+	}
+
+	[level='2'] {
+		padding-left: 4rem;
+	}
+
+	[level='3'] {
+		padding-left: 6rem;
+	}
+
 	* {
 		/* font-family: Inconsolata; */
 		font-weight: 100;
 		font-size: 1.1rem;
+	}
+
+	table {
+		border-collapse: collapse;
+	}
+
+	tr:nth-child(even) {
+		background: #393939;
 	}
 
 	/* iframe {
@@ -79,39 +106,55 @@
 
 	key {
 		color: #ddd;
-		/* font-weight: bold; */
+		font-weight: 300;
 	}
 
 	.value {
 		color: #ffa;
 	}
 
-	cardinality {
+	.cardinality {
 		color: #faa;
+		padding-left: 3rem;
 	}
-	type{
+
+	.type {
 		color: #aaf;
+		padding-left: 3rem;
 	}
-	constraint{
-		color: #afa
+
+	.constraint {
+		color: #afa;
+		padding-left: 3rem;
 	}
+
 	index {
 		color: gray;
 		font-weight: bold;
 	}
 
-
+	.value,
+	.type {
+		color: gray;
+		padding-left: 3rem;
+	}
 
 	.string {
 		color: gold;
 	}
 
-	.date,.time,.datetime {
+	.date,
+	.time,
+	.datetime {
 		color: magenta;
 	}
 
 	.url {
 		color: pink;
+	}
+
+	.email {
+		color: papayawhip;
 	}
 
 	.null,
@@ -127,8 +170,12 @@
 		color: #4f4;
 	}
 
-	.number {
+	.int {
 		color: aqua;
+	}
+
+	.float {
+		color: aquamarine;
 	}
 
 	.term {

@@ -1,0 +1,55 @@
+<script type="module" src='dist/js/tab-line.tag.js'></script>
+
+<style>
+	/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Quicksand:wght@300&display=swap'); */
+	@import url('https://max.pub/css/quicksand.css');
+	@import url('https://max.pub/css/inconsolata.css');
+
+	body {
+		background: #222;
+		color: white;
+		font-family: quicksand;
+		font-weight: 300;
+	}
+
+	main {
+		width: 100%;
+		max-width: 40rem;
+		margin: 0 auto;
+	}
+
+	tab-line {
+		width: 100%;
+		padding: 1rem;
+		--font: inconsolata;
+	}
+
+	h1 {
+		margin-top: 4rem;
+	}
+</style>
+
+
+<main>
+
+
+	<h1>Data</h1>
+	<tab-line id='data'></tab-line>
+
+
+	<h1>Model</h1>
+	<tab-line class='definition'></tab-line>
+
+
+	<h1>Validation</h1>
+
+
+</main>
+
+<script>
+	(async function () {
+		document.querySelector('#data').textContent = await fetch('data/contact.tali').then(x => x.text());
+		document.querySelector('.definition').textContent = await fetch('data/contact.def.tali').then(x => x.text());
+	})()
+</script>

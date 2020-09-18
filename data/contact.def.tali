@@ -1,0 +1,13 @@
+person	*	int	autofill
+	name	1
+		first	1	string
+		last	1	string
+		nick	?	string
+	birth	?	Date
+	email	*	Email
+	phone	*	number
+	address	*
+		city	1	string
+		zip 	?	number
+		street	?	string
+		house	?	number
