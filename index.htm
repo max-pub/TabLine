@@ -25,24 +25,86 @@
 		--font: inconsolata;
 	}
 
-	h1 {
+	h2 {
 		margin-top: 4rem;
 	}
 </style>
 
 
 <main>
+	<h1>TabLine</h1>
+	<p>
+		the minimalist data format. <br />
+		using only <i>tabs</i> and <i>newlines</i> as command-characters <br />
+	</p>
+	<p>
+		newlines separate key-value pairs <br />
+		tabs separate keys <br />
+		tab-indents enable hierarchies
+	</p>
+	<p>
+		easy parsing (think 300 byte decoders) </br>
+
+	</p>
+	<p>
+		JSON uses 7 command characters <code>{ } [ ] , " : </code>
+	</p>
+	<p>
+		XML uses 4 command characters <code>< > " ' </code>
+	</p>
 
 
-	<h1>Data</h1>
+	<h2>Data</h2>
+	<p>
+		with type auto-detection <br />
+		hover over a value to see its type
+
+	</p>
 	<tab-line id='data'></tab-line>
 
 
-	<h1>Model</h1>
+	<h2>Model</h2>
+	<p>
+		declare cardinalities and types
+	</p>
 	<tab-line class='definition'></tab-line>
 
 
-	<h1>Validation</h1>
+	<h2>Validation</h2>
+	<tab-line definition='data/contact.def.tali'></tab-line>
+
+
+	<h2>Transformation</h2>
+	<p>
+		~ sibling <br/>
+		^ parent
+
+	</p>
+	<tab-line class='transformation'></tab-line>
+
+
+
+	<h2>Automatic Class Definitions</h2>
+	<ul>
+		<li>TypeScript</li>
+		<li>Dart</li>
+		<li>Kotlin</li>
+		<li>...</li>
+	</ul>
+
+
+
+	<h2>Types</h2>
+	<ul>
+		<li>int</li>
+		<li>real</li>
+		<li>range</li>
+		
+		<li>letters</li>
+		<li>email</li>
+		<li>url</li>
+		
+	</ul>
 
 
 </main>
@@ -50,6 +112,8 @@
 <script>
 	(async function () {
 		document.querySelector('#data').textContent = await fetch('data/contact.tali').then(x => x.text());
+		document.querySelector('[definition]').textContent = await fetch('data/contact.tali').then(x => x.text());
 		document.querySelector('.definition').textContent = await fetch('data/contact.def.tali').then(x => x.text());
+		document.querySelector('.transformation').textContent = await fetch('data/contact.t.tali').then(x => x.text());
 	})()
 </script>

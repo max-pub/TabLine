@@ -1,16 +1,20 @@
-person	12345
+person	12345a
 	name
-		first	John
-		last	Doe
-		nick	Johnny
+		given	John
+		family	Doe
 	birth	1950-07-01
+	birth	1956-04-03
 	email	john.doe@gmail.com
 	email	johnny@personal.com
 	homepage	http://www.github.com
-	phone	123456789
+	phone	+49 173 1234567
 	address
 		city	Chicago
 		zip 	12345
 		street	Newstreet
 		house	21
 	lastPurchase	67.12
+	income	50000 - 70000
+	alive	true
+	dead	false
+	favoriteColor	#aaffaa

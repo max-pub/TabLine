@@ -31,6 +31,10 @@ STYLE.appendChild(document.createTextNode(`/* @import url('https://fonts.googlea
 		/* padding: .3rem; */
 	}
 
+	table {
+		width: 100%
+	}
+
 	line {
 		display: block;
 	}
@@ -39,15 +43,15 @@ STYLE.appendChild(document.createTextNode(`/* @import url('https://fonts.googlea
 		/* border-top: 1px solid red; */
 	}
 
-	[level='1'] {
+	[level='1'] td:first-child {
 		padding-left: 2rem;
 	}
 
-	[level='2'] {
+	[level='2'] td:first-child {
 		padding-left: 4rem;
 	}
 
-	[level='3'] {
+	[level='3'] td:first-child {
 		padding-left: 6rem;
 	}
 
@@ -63,6 +67,10 @@ STYLE.appendChild(document.createTextNode(`/* @import url('https://fonts.googlea
 
 	tr:nth-child(even) {
 		background: #393939;
+	}
+
+	:host(:not(.definition)) .type {
+		display: none;
 	}
 
 	/* iframe {
@@ -105,10 +113,7 @@ STYLE.appendChild(document.createTextNode(`/* @import url('https://fonts.googlea
 		padding-left: 3rem;
 	}
 
-	index {
-		color: gray;
-		font-weight: bold;
-	}
+
 
 	.value,
 	.type {
@@ -116,9 +121,16 @@ STYLE.appendChild(document.createTextNode(`/* @import url('https://fonts.googlea
 		padding-left: 3rem;
 	}
 
+
 	.string {
 		color: gold;
 	}
+
+	.letters {
+		color: goldenrod;
+	}
+
+
 
 	.date,
 	.time,
@@ -126,7 +138,9 @@ STYLE.appendChild(document.createTextNode(`/* @import url('https://fonts.googlea
 		color: magenta;
 	}
 
-	.url {
+	.url,
+	.email,
+	.phone {
 		color: pink;
 	}
 
@@ -134,38 +148,51 @@ STYLE.appendChild(document.createTextNode(`/* @import url('https://fonts.googlea
 		color: papayawhip;
 	}
 
-	.null,
-	.undefined {
-		color: silver;
-	}
 
-	.boolean.false {
+	.bool.false {
 		color: #f44;
 	}
 
-	.boolean.true {
+	.bool.true {
 		color: #4f4;
 	}
+
+
 
 	.int {
 		color: aqua;
 	}
 
-	.float {
+	.real {
 		color: aquamarine;
 	}
 
+
+
 	.term {
 		color: pink
-	}`));
+	}
+
+	.open {
+		color: #afa;
+	}
+
+	.close {
+		color: #faa;
+	}
+
+	.validation{color: #f55; font-weight: bold;}`));
 //] CSS
 
 
 
 
 
-import tabLine from '../../js/base.js';
-	import tali2html from '../../js/html.js';
+// import tabLine from '../../js/base.js';
+	import parse from '../../js/parse.js';
+	import html from '../../js/html.js';
+	import validate from '../../js/validate.js';
+
 
 class WebTag extends HTMLElement {
 
@@ -316,12 +343,26 @@ class WebTag extends HTMLElement {
 		$onModelChange() {
 			this.show()
 		}
-		show() {
+		async show() {
 			console.log('model change', this.textContent)
 			try {
-				let data = this.classList.contains('definition') ? tabLine.parseDefinition(this.textContent) : tabLine.parse(this.textContent);
-				console.log('data', data);
-				this.$q1('main').innerHTML = '<table>' + tali2html(data) + '</table>';
+				let type = '';
+				if (this.classList.contains('definition')) type = 'definition'
+				if (this.classList.contains('transformation')) type = 'transformation'
+				let data = parse(this.textContent, type);
+				let definition = this.getAttribute('definition');
+				if (definition) {
+					definition = await fetch(definition).then(x => x.text());
+					console.log("VALIDATIOON",definition)
+					definition = parse(definition, 'definition')
+					validate(data, definition);
+				}
+				// if (this.classList.contains('definition'))
+				// 	data = tabLine.parseDefinition(data)
+
+				// console.log('data', data);
+				// console.log('html', html(data))
+				this.$q1('main').innerHTML = '<table>' + html(data) + '</table>';
 				// console.log('html', tabLine.toHTML(data))
 				// console.log('json',tabLine.toJSON(data))
 				// console.log('json', tabLine.toTypeScript(data))

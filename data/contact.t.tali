@@ -1,0 +1,11 @@
+person	<person id='[[.]]'> 	</person>
+	name	<h1>[[.first]] [[.last]] [[~birth]]</h1>
+	email	<a href='[[.]]'>[[.]]</a>
+	homepage	http://www.github.com
+	phone	123456789
+	address 	<address>[[.city]]
+		city	Chicago
+		zip 	12345
+		street	Newstreet
+		house	21
+	lastPurchase	67.12
