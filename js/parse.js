@@ -14,7 +14,7 @@ export default function parse(text, type) {
 		if (type == 'definition' && $values) {
 			item.$cardinality = $values[0]//.split(" ")
 			item.$type = $values[1]
-			item.$constraint = $values[2]
+			item.$constraints = $values.slice(2)
 		}
 		if (type == 'transformation' && $values) {
 			item.$open = $values[0]//.split(" ")
