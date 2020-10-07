@@ -41,8 +41,9 @@
 
 <main>
 	<h1>TabLine</h1>
+	<h2>the minimalist data format</h2>
 	<p>
-		the minimalist data format. <br />
+		. <br />
 		using only <i>tabs</i> and <i>newlines</i> as command-characters <br />
 	</p>
 	<p>
@@ -64,14 +65,14 @@
 
 	<h2>Data</h2>
 	<p>
-		with type auto-detection <br />
-		hover over a value to see its type
+		example with type auto-detection <br />
+		(hover over a value to see its type)
 
 	</p>
 	<tab-line id='data'></tab-line>
 
 
-	<h2>Model</h2>
+	<h2>Schema</h2>
 	<p>
 		declare cardinalities and types
 	</p>
@@ -79,10 +80,12 @@
 
 
 	<h2>Validation</h2>
+	<p>validate data against a schema</p>
 	<tab-line definition='data/contact.def.tali'></tab-line>
 
 
 	<h2>Transformation</h2>
+	<p>transform TabLine data into something else</p>
 	<p>
 		~ sibling <br />
 		^ parent
@@ -93,6 +96,7 @@
 
 
 	<h2>Automatic Class Definitions</h2>
+	<p>automatically create native class definitions for the language of your choice</p>
 	<ul>
 		<li>TypeScript</li>
 		<li>Dart</li>
@@ -104,14 +108,19 @@
 
 	<h2>Types</h2>
 	<ul>
-		<li>int</li>
+		<li>int (8,16,32,64)</li>
 		<li>real</li>
 		<li>range</li>
 
+		<li>UUID</li>
+
+		<li>enum</li>
+
+		<li>string</li>
 		<li>letters</li>
 		<li>email</li>
 		<li>url</li>
-
+		<li>date, time, datetime</li>
 	</ul>
 
 
