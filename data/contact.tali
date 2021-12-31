@@ -1,4 +1,4 @@
-person	12345a
+person	
 	name
 		given	John
 		family	Doe
@@ -13,6 +13,11 @@ person	12345a
 		zip 	12345
 		street	Newstreet
 		house	21
+	address
+		city	Baltimore
+		zip 	44444
+		street	some street
+		house	21		
 	lastPurchase	67.12
 	income	50000 - 70000
 	alive	true
