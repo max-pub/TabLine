@@ -1,7 +1,7 @@
 person	*	int	autofill
 	name	1
-		given	1	letters
-		family	1	letters
+		given	1	letters+
+		family	1	letters+
 		nick	?	letters
 	birth	?	date
 	email	*	email

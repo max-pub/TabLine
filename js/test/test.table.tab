@@ -1,0 +1,4 @@
+country		gdp						area		population
+:string		:currency				integer		integer
+---------
+germany		EUR 4_000_000_000_000	350_000		80_000_000

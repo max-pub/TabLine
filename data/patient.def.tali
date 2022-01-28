@@ -7,9 +7,11 @@ patient 	*  	numericID
 		sample	*	number	1 - 100
 			analysis	*	terminology
 				result	1	unit
-				norm	?	range
+				norm	?	range[float]
+				norm	?	float.range		[0-max]
 				value	1	int
 				unit	1	enum	g/l mol/l mg/dl
+				pcr		*	tuple(string int)	
 	location	*	Location
 Location	*	int
 	from	1 	DateTime
@@ -17,3 +19,28 @@ Location	*	int
 	clinic	1	string
 	ward	?	string
 	room	?	string
+
+
+tuple<real32,enum:si>
+tuple<range<real>,enum<si>>
+
+tuple<real,real> == location
+:coordinates == :tuple<real,real>
+:coordinates == pair<real,real>
+:date
+:datetime
+:year
+:duration
+:terminology<openterm.org/lab>   nichts anderes als key einer anderen tabelle!
+:key<https://openterm.org/lab>
+:enum<a,b,c>
+
+
+weather        	temp.real.min	temp.real.max	wind.speed	wind.gust	moon			precip.type
+:date:unique	:real       	:real       	:real    	:int    	:percentage		:enum<rain,snow>
+2021-12-17		17				22.5			11			257			57				rain
+2021-12-18		17				22.5			11			257			57				rain
+2021-12-19		17				22.5			11			257			57
+2021-12-20		17				22.5			11			257			57
+
+

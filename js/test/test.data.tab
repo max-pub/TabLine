@@ -1,0 +1,64 @@
+person	12345a
+	name
+		given	John
+		family	Doe
+	birth	1950-07-01
+	email	
+		john.doe@gmail.com
+		johnny@personal.com
+	homepage	
+		http://www.github.com
+	phone	
+		+49 173 1234567
+	adresses
+		abc
+			city	Chicago
+			zip 	12345
+			street	Newstreet
+			house	21	
+		def
+			city	Chicago
+			zip 	12345
+			street	Newstreet
+			house	21
+	lastPurchase	67.12 EUR
+	incomeRange 	50000 - 70000
+	alive	true
+	dead	false
+	favoriteColor	#aaffaa
+	dictionary
+		key1	value1
+		key2	value2
+		key3	value3
+	list
+		value1
+		value2
+		value3
+
+
+
+person	12345a
+	name
+		given	John
+		family	Doe
+	birth	1950-07-01
+	birth	1956-04-03
+	email	john.doe@gmail.com
+	email	johnny@personal.com
+	homepage	http://www.github.com
+	phone	+49 173 1234567
+	address
+		city	Chicago
+		zip 	12345
+		street	Newstreet
+		house	21
+	address
+		city	Chicago
+		zip 	12345
+		street	Newstreet
+		house	21
+	lastPurchase	67.12
+	incomeBracket	USD 50000 - USD 70000
+	alive	true
+	dead	false
+	favoriteColor	#aaffaa

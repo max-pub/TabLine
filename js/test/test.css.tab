@@ -1,0 +1,12 @@
+body
+	font-family	arial
+	background	black
+	color	white
+	div
+		color	green
+		// comment
+		&#xxx 
+			color	red
+			text-align	right
+		>directDescendant
+			margin	0 auto
