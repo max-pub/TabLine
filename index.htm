@@ -83,7 +83,7 @@
 	<tab-line definition='data/contact.def.tali'></tab-line>
 
 
-	<h2>Transformation</h2>
+	<h2>Transform</h2>
 	<p>transform TabLine data into something else</p>
 	<p>
 		~ sibling <br />
@@ -92,14 +92,36 @@
 	</p>
 	<tab-line class='transformation'></tab-line>
 
+	<h2>Filters</h2>
+	<p>simple sub-selection of data</p>
+
 	
 	<h2>Queries</h2>
 	<p>extract data as needed</p>
 
 
-	<h2>Filters</h2>
-	<p>simple sub-selection of data</p>
 
+	<h2>Queries (=Filters) narrow down the data</h2>
+	<p>find desired records</p>
+	<tab-line class=''>
+person	.name [ john	// all persons where direct-child name starts with 
+	name	
+	email	
+	homepage	http://www.github.com
+	phone	123456789
+	address 	.zip [ 12
+		city	Chicago
+		zip 	12345
+		street	Newstreet
+		house	21
+	lastPurchase	67.12	
+	</tab-line>
+
+
+	<h2>Record Linkage</h2>
+	<p>Data is in the Leaves.
+		Each node has a unique ID that can be linked
+	</p>
 
 	<h2>Automatic Class Definitions</h2>
 	<p>automatically create native class definitions for the language of your choice</p>

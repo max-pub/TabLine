@@ -1,0 +1,35 @@
+<!-- <script type="module" src='https://tabline.org/dist/js/tab-line.tag.js'></script> -->
+<script type="module" src='dist/js/tab-line.tag.js'></script>
+<script type="module" src='https://max.pub/hilite/dist/json-view.tag.js'></script>
+
+<tab-line>
+person
+	name
+		given	frank
+		family	meyer
+	birth	2020-05-05
+	address	
+		street	longstreet
+		city	greatplace
+		house	55
+	email	abc@def.com
+	email	dcg@vki.com
+</tab-line>
+
+<json-view>
+	{"person":[{
+		"name": [{"given":["frank"], "family":["meyer"]}],
+		"birth": ["2020-05-05"],
+		"address":[{"_":"home","street":"longstreet"}],
+		"email": ["abc@def.com","dcg@vki.com"]
+	}]}
+</json-view>
+
+<json-view id='b'>
+
+</json-view>
+
+<script type='module'>
+	import parse from './js/parse.js';
+	document.querySelector('#b').textContent = JSON.stringify( parse(document.querySelector('tab-line').textContent).root);
+</script>
