@@ -5,17 +5,21 @@ export function fromBytes(bytes, options = {}) {
 	let encoding = options.encoding ?? defaultOptions.encoding
 	if (Array.isArray(encoding)) {
 		for (let enc of encoding) {
-			console.log('try',enc)
+			// console.log('try',enc)
 			let text = new TextDecoder(enc).decode(bytes)
-			if (checkDecodingResult(text)) return text
+			if (checkDecodingResult(text)) return { text, encoding: enc }
 		}
 	}
-	else return new TextDecoder(encoding).decode(bytes)
-	console.log('result to utf8')
-	return new TextDecoder('utf8').decode(bytes)
+	else return { text: new TextDecoder(encoding).decode(bytes), encoding }
+	// console.log('result to utf8')
+	return { text: new TextDecoder('utf8').decode(bytes), encoding: 'utf8' }
 }
+const LANG = {
+	german: 'äÄöÖüÜß'
+}
+const testChars = (LANG.german).split('')
+
 export function checkDecodingResult(text) {
-	let testChars = 'äÄöÖüÜß'.split('')
 	// console.log(testChars)
 	for (let test of testChars) {
 		// console.log('test',test,text.includes(test))
@@ -58,7 +62,7 @@ if (import.meta.main) {
 	if (!path) path = '.'
 	if (!encoding) encoding = ['latin1'] // 'utf16le',
 	// recodePath(path, encoding)
-	for await (let item of listFiles(path,1)) {
+	for await (let item of listFiles(path, 1)) {
 		recodeFile(item, encoding)
 	}
 }

@@ -18,6 +18,9 @@ export async function* listFiles(path, depth = 10) {
 export async function loadBytes(path) {
 	return await Deno.readFile(path)
 }
+export async function saveBytes(path, bytes) {
+	return await Deno.writeFile(path, bytes)
+}
 
 
 export async function loadText(path) {

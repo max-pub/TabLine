@@ -1,13 +1,19 @@
 
 export function aa2ad(aa) { // [[]] -> [{}]
+	// console.log('aa',aa)
 	let cols = aa[0]
+	// console.log('cols',cols)
+	if(cols?.[0]==='') cols[0] = 'index'
+	// console.log('cols',cols)
 	return aa.slice(1).map(line =>
 		Object.fromEntries(line.map((x, i) => [cols[i], x]))
 	)
 }
 export function ad2dd(ad) { // [{}] -> {{}}
+	// let index = Object.keys(x)[0]
+	let index = 'index'
 	return Object.fromEntries(
-		ad.map(x => [x[Object.keys(x)[0]], Object.fromEntries(Object.entries(x).slice(1))])
+		ad.map(x => [x[index], Object.fromEntries(Object.entries(x).slice(1))])
 	)
 }
 export function aa2dd(aa) { return ad2dd(aa2ad(aa)) }
@@ -35,7 +41,7 @@ export function dd2aa(dd, options = {}) { // {{}} -> [[]]
 	if (options.sortCol && cols.indexOf(options.sortCol) != -1) sortCol = cols.indexOf(options.sortCol) + 1
 	// console.log('SORT---', options.sortCol, ' x ', sortCol, ' x ', sortCol != -1)
 	if (sortCol != -1) {
-		console.log('SORT BY', options.sortCol, ' x ', sortCol)
+		// console.log('SORT BY', options.sortCol, ' x ', sortCol)
 		// console.log('first row', aa[0])
 		aa = aa.sort((a, b) => a[sortCol] > b[sortCol] ? 1 : (a[sortCol] < b[sortCol] ? -1 : 0))
 	}
